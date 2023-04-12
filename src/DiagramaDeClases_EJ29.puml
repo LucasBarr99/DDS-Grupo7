@@ -1,0 +1,62 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+ class Carrito_compras{
+   List<Item_Producto> items
+
+    void agregarItem(Item_Producto item)
+    void quitarItem(Item_Producto item)
+    double precioFinal()
+    void confirmarCompra(Cliente cliente)
+   }
+ class Item_producto{
+    Producto producto
+    int cantidad
+
+    double getPrecio()
+}
+
+ class Producto{
+    double precio
+    String nombre
+
+    public double getPrecio()
+}
+ class Medio_de_Pago{
+   Cliente cliente
+   double limiteCredito
+   boolean habilitado
+
+   boolean estaHabilitado(Carrito_Compras carrito)
+   void pagar(Carrito_Compras carrito_compras)
+}
+
+class Cliente {
+  String nombre
+  String direccion_envio
+  String direccion_cobro
+  String email
+  List<Carrito_Compras> carritos
+  List<Carrito_Compras> comprasConfirmadas
+  MedioDePago medioDePago
+  double porcentaje_descuento
+
+ void agregarCompra(Carrito_Compras carrito)
+ double porcentaje_descuento()
+
+}
+
+
+Cliente --> Medio_de_Pago
+Medio_de_Pago --> Cliente
+Item_producto --> Producto
+Carrito_compras -->"*"Item_producto
+Medio_de_Pago ..> Carrito_compras
+Carrito_compras ..>Cliente
+Cliente -->"*"Carrito_compras
+
+@enduml
+
+
+
+@enduml

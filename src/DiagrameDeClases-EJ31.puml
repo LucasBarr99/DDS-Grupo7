@@ -1,0 +1,79 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Libro {
+    String nombre
+    int año
+    List<Autor> autores
+    List<Copia_Libro> copias;
+    Categoria categoria
+    String editorial
+
+}
+
+class Copia_Libro {
+    int id
+    Libro libro
+    Estado_Copia estado
+
+}
+class Prestamo_Copia {
+    Copia_Libro copia
+    Lector lector
+    LocalDate fecha_prestamo
+    LocalDate fecha_vencimiento
+
+    Boolean estaVencido()
+
+}
+class Autor {
+    String nombre
+    String fecha_nacimiento
+    String nacionalidad
+}
+
+enum Categoria {
+NOVELA
+TEATRO
+POESIA
+ENSAYO
+}
+enum Estado_Copia {
+EN_BIBLIOTECA
+PRESTADO
+CON_RETRASO
+EN_REPARACION
+}
+
+class Lector{
+    String nombre
+    List<Prestamo_Copia> prestamos
+    List<Multa> multas
+
+    Int getCantidadDePrestamos()
+    Boolean tienePrestamosVencidos()
+    Boolean tieneMultasVigentes()
+}
+class Multa{
+    LocalDate fecha_inicio
+    int cantDias
+
+    Boolean estaVigente()
+
+}
+class Repositorio{
+
+
+}
+
+Libro --> Categoria
+Libro -->"*" Autor
+Copia_Libro --> Estado_Copia
+Copia_Libro --> Libro
+Prestamo_Copia --> Copia_Libro
+Lector -->"*" Multa
+Libro -->"*" Copia_Libro
+Lector -->"*" Prestamo_Copia
+Repositorio -->"*" Libro
+Repositorio -->"*" Lector
+@enduml
