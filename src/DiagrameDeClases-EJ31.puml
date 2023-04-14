@@ -61,6 +61,7 @@ class Multa{
     Boolean estaVigente()
 
 }
+
 class Repositorio{
 
 
@@ -74,6 +75,8 @@ Prestamo_Copia --> Copia_Libro
 Lector -->"*" Multa
 Libro -->"*" Copia_Libro
 Lector -->"*" Prestamo_Copia
-Repositorio -->"*" Libro
-Repositorio -->"*" Lector
+Prestamo_Copia -> Lector
+Repositorio ->"*" Libro
+Repositorio ->"*" Lector
+
 @enduml
