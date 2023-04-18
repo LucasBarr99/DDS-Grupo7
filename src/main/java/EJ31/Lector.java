@@ -3,6 +3,7 @@ package EJ31;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Lector {
     String nombre;
@@ -14,7 +15,7 @@ public class Lector {
     }
 
     boolean puedePedirPrestamo(){
-        return prestamos.size() < 3 && !tienePrestamosVencidos() && !tieneMultasVigentes();
+        return prestamosActuales() < 3 && !tienePrestamosVencidos() && !tieneMultasVigentes();
     }
 
     Boolean tienePrestamosVencidos(){
@@ -27,6 +28,10 @@ public class Lector {
 
     void agregarMulta(int dias){
         multas.add(new Multa(LocalDate.now(), dias));
+    }
+
+    int prestamosActuales(){
+        return prestamos.stream().filter(prestamo_copia -> !prestamo_copia.estaCerrado()).collect(Collectors.toList()).size();
     }
 
     void hayCopiasDeLibro(Libro libro){

@@ -22,6 +22,9 @@ public class Prestamo_Copia {
         return fecha_prestamo.plusDays(30);
     } // Se calcula ya que es en base a
                                                                                     // a la fecha inicial
+    boolean estaCerrado(){
+        return cerrado;
+    }
 
     public void setCerrado(boolean cerrado) {
         this.cerrado = cerrado;
