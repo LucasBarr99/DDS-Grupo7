@@ -1,5 +1,6 @@
 package EJ31;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,8 +13,8 @@ public class Lector {
         this.multas.add(multa);
     }
 
-    Integer getCantidadDePrestamos(){
-        return this.prestamos.size();
+    boolean puedePedirPrestamo(){
+        return prestamos.size() < 3 && !tienePrestamosVencidos() && !tieneMultasVigentes();
     }
 
     Boolean tienePrestamosVencidos(){
@@ -24,6 +25,26 @@ public class Lector {
         return this.multas.stream().anyMatch(Multa::estaVigente);
     }
 
+    void agregarMulta(int dias){
+        multas.add(new Multa(LocalDate.now(), dias));
+    }
 
+    void hayCopiasDeLibro(Libro libro){
+
+    }
+    void pedirPrestamo(Libro libro){
+        if(puedePedirPrestamo()){
+            // Se le pide al repo una copia del libro
+        }
+    }
+
+    void devolverCopia(Prestamo_Copia prestamo){
+        if(prestamo.estaVencido()){
+            prestamo.setCerrado(true);
+            if(!tienePrestamosVencidos()){ // Se fija si sigue teniendo prestamos para ver si asignarle o no la multa
+                agregarMulta(prestamo.diasVencido()*2);
+            }
+        }
+    }
 
 }

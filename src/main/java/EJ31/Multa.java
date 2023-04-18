@@ -9,9 +9,11 @@ public class Multa {
     Integer cantidadDeDias;
 
     Boolean estaVigente(){
-        LocalDate hoy = LocalDate.now();
-        Long diferenciaDias = DAYS.between(this.fecha_inicio,hoy);
-        return this.cantidadDeDias > diferenciaDias;
+        return LocalDate.now().isAfter(fecha_inicio.plusDays(cantidadDeDias));
     }
 
+    public Multa(LocalDate fecha_inicio, Integer cantidadDeDias) {
+        this.fecha_inicio = fecha_inicio;
+        this.cantidadDeDias = cantidadDeDias;
+    }
 }

@@ -5,7 +5,7 @@ class Libro {
     String nombre
     int año
     List<Autor> autores
-    List<Copia_Libro> copias;
+    List<Copia_Libro> copias
     Categoria categoria
     String editorial
 
@@ -21,10 +21,11 @@ class Prestamo_Copia {
     Copia_Libro copia
     Lector lector
     LocalDate fecha_prestamo
-    LocalDate fecha_vencimiento
+
 
     Boolean estaVencido()
-
+    LocalDate fechaVencimiento()
+    int diasVencido()
 }
 class Autor {
     String nombre
@@ -53,6 +54,8 @@ class Lector{
     Int getCantidadDePrestamos()
     Boolean tienePrestamosVencidos()
     Boolean tieneMultasVigentes()
+    Void pedirPrestamo(Libro libro)
+    Void devolverCopia(Prestamo prestamo)
 }
 class Multa{
     LocalDate fecha_inicio
@@ -61,10 +64,10 @@ class Multa{
     Boolean estaVigente()
 
 }
-
 class Repositorio{
 
-
+    Copia_Libro prestarCopia()
+    Boolean hayCopiaDe(Libro libro)
 }
 
 Libro --> Categoria
@@ -75,8 +78,7 @@ Prestamo_Copia --> Copia_Libro
 Lector -->"*" Multa
 Libro -->"*" Copia_Libro
 Lector -->"*" Prestamo_Copia
-Prestamo_Copia -> Lector
-Repositorio ->"*" Libro
-Repositorio ->"*" Lector
+Repositorio -->"*" Libro
+Repositorio -->"*" Lector
 
 @enduml
