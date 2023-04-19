@@ -1,0 +1,107 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+
+
+class Usuario {
+    String correo
+    String contrasenia
+    TarjetaDeCredito tarjeta
+    List<Reserva> reserva
+
+    void realizarConsulta(Consulta consulta)
+
+
+}
+class Consulta{
+    int horario
+    boolean porTarifa
+    boolean informacionDeVuelos
+    String destino
+    String origen
+}
+
+class RepositorioVuelos{
+
+    List<Vuelo> devolverConsulta(Consulta consulta)
+}
+
+class TarjetaDeCredito{
+   Usuario cliente
+   boolean habilitado
+   int numeroDeTarjeta
+}
+
+class Vuelo{
+    String estado
+    String origen
+    String destino
+    int costo
+    LocalDateTime fechaHorario
+    List<Asiento> asiento
+    String aerolinea
+    Boolean esDirecto
+
+    Boolean existenAsientosDisponibles()
+    Boolean estaEnHora()
+    void reservar(Usuario usuario)
+
+}
+
+class Asiento{
+    Vuelo vuelo
+    Boolean reservado
+    CategoriaAsiento categoria
+
+    void reservar()
+}
+
+enum CategoriaAsiento{
+    PRIMERA_CLASE
+    ECONOMICA
+
+}
+
+class ReservaVuelo{
+    Vuelo vuelo
+    Reserva reserva
+    String pasajero
+    Asiento asiento
+
+
+}
+
+class Reserva{
+    List<ReservaVuelo> vuelos
+    Double tarifa
+    Cliente cliente
+
+    void confirmar()
+    Double getTarifa()
+    void agregarReservaVuelo()
+    void quitarReservaVuelo()
+
+}
+class Ciudad{
+}
+class Aeropuerto{
+}
+class Aerolinea{
+}
+Usuario -->"*" Reserva
+Usuario --> TarjetaDeCredito
+Usuario ..> Consulta
+
+Reserva -->"*" ReservaVuelo
+Reserva --> Usuario
+
+ReservaVuelo --> Vuelo
+
+Vuelo -->"*" Asiento
+
+Asiento --> CategoriaAsiento
+
+RepositorioVuelos -->"*" Vuelo
+RepositorioVuelos ..> Consulta
+
+@enduml
