@@ -1,0 +1,52 @@
+
+h1{
+    text-align:center;
+    color:white;
+}
+
+body{
+    background-color: rgb(18, 119, 89);
+    font-family: 'Roboto', sans-serif;
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-weight:lighter;
+    width: 100%;
+}
+
+.boton{
+    font-family: 'Roboto', sans-serif;
+    font-size:15px;
+    border: 20px;
+    border-radius: 20px;
+    background-color: rgb(18, 119, 89);
+    color:aliceblue;
+}
+
+.formulario{
+    background-color: aliceblue;
+    border: 20px;
+    border-radius: 20px;
+    align-self: center;
+    text-align: center;
+    height: 300px;
+    width: 300px;
+    padding:40px;
+}
+
+.text-input{
+    border: 1px solid rgb(18, 119, 89);
+    border-radius: 20px;
+    padding-left: 10px;
+    font-family: 'Roboto',sans-serif;
+}
+
+.obligatorio{
+    color:red;
+    font-family: 'Roboto',sans-serif;
+    font-size: 10px;
+    font-weight:400;
+}
