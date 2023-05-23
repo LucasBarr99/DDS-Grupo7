@@ -3,44 +3,49 @@
 
 
 
+package Personas{
 class Usuario {
     String correo
     String contrasenia
     TarjetaDeCredito tarjeta
     List<Reserva> reserva
 
-    void realizarConsulta(Consulta consulta)
-
-
-}
-class Consulta{
-    int horario
-    boolean porTarifa
-    boolean informacionDeVuelos
-    String destino
-    String origen
 }
 
-class RepositorioVuelos{
-
-    List<Vuelo> devolverConsulta(Consulta consulta)
+class Pasajero {
+   String nombre
+   String descripcion
+}
 }
 
-class TarjetaDeCredito{
-   Usuario cliente
-   boolean habilitado
-   int numeroDeTarjeta
+package OperacionComercial{
+class Compra{
+    Usuario cliente
+    List<Reserva> reservas
+}
+class Reserva{
+    Itinerario itinerario
+    Double tarifa
+
+    void confirmar()
+    Double getTarifa()
+    void agregarReservaVuelo()
+    void quitarReservaVuelo()
+
 }
 
+}
+
+package Servicios{
 class Vuelo{
     String estado
-    String origen
-    String destino
+    Ciudad origen
+    Ciudad destino
     int costo
     LocalDateTime fechaHorario
     List<Asiento> asiento
-    String aerolinea
-    Boolean esDirecto
+    List<Vuelo> vuelos
+    Aerolinea aerolinea
 
     Boolean existenAsientosDisponibles()
     Boolean estaEnHora()
@@ -62,42 +67,90 @@ enum CategoriaAsiento{
 
 }
 
-class ReservaVuelo{
-    Vuelo vuelo
+class Itinerario{
+    List<Vuelo> vuelo
     Reserva reserva
-    String pasajero
-    Asiento asiento
+    List<Pasajero> pasajeros
+    List<Asiento> asientos
 
 
 }
 
-class Reserva{
-    List<ReservaVuelo> vuelos
-    Double tarifa
-    Cliente cliente
 
-    void confirmar()
-    Double getTarifa()
-    void agregarReservaVuelo()
-    void quitarReservaVuelo()
-
-}
 class Ciudad{
+    String nombre
+    String descripcion
 }
-class Aeropuerto{
-}
+
 class Aerolinea{
+    List<Vuelo> vuelosQueOfrece
 }
-Usuario -->"*" Reserva
+
+class RepositorioVuelos{
+
+    List<Vuelo> devolverConsulta(Consulta consulta)
+}
+}
+
+package Consultas{
+class Consulta{
+  Ciudad Origen
+    Ciudad Destino
+
+}
+
+class ConsultaHorario{
+    LocalDateTime inicio
+    LocalDateTime fin
+
+}
+class ConsultaTarifa{
+   String ordenTarifa
+}
+class ConsultaInfoVuelo{
+    Vuelo vuelo
+    LocalDateTime fechaHorario
+    CategoriaAsiento categoria
+    Aerolinea aerolinea
+    boolean vueloDirecto
+}
+}
+
+
+
+class TarjetaDeCredito{
+   Usuario cliente
+   boolean habilitado
+   int numeroDeTarjeta
+}
+
+
+
+Usuario -->"*" Compra
 Usuario --> TarjetaDeCredito
-Usuario ..> Consulta
 
-Reserva -->"*" ReservaVuelo
-Reserva --> Usuario
 
-ReservaVuelo --> Vuelo
+
+Compra -->"*" Reserva
+Compra --> Usuario
+
+Aerolinea -->"*" Vuelo
+
+Reserva --> Itinerario
+
+
+ConsultaHorario --|> Consulta
+ConsultaTarifa --|> Consulta
+ConsultaInfoVuelo--|> Consulta
+
+Itinerario -->"*" Vuelo
+Itinerario -->"*" Asiento
+Itinerario -->"*" Pasajero
 
 Vuelo -->"*" Asiento
+Vuelo --> Ciudad
+Vuelo --> Ciudad
+Vuelo --> Aerolinea
 
 Asiento --> CategoriaAsiento
 
