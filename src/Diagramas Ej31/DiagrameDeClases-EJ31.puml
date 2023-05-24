@@ -82,12 +82,19 @@ class Repositorio{
 
 Libro --> Categoria
 Libro -->"*" Autor
+Libro -->"*" Copia_Libro
+
 Copia_Libro --> Estado_Copia
 Copia_Libro --> Libro
+
 Prestamo_Copia --> Copia_Libro
+
 Lector -->"*" Multa
-Libro -->"*" Copia_Libro
 Lector -->"*" Prestamo_Copia
+
+multaController ..> Lector
+multaController ..> Prestamo_Copia
+
 Repositorio -->"*" Libro
 Repositorio -->"*" Lector
 
