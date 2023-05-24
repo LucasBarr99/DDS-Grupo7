@@ -26,11 +26,19 @@ class Prestamo_Copia {
     Boolean estaVencido()
     LocalDate fechaVencimiento()
     int diasVencido()
+    void cerrar()
 }
 class Autor {
     String nombre
     String fecha_nacimiento
     String nacionalidad
+}
+
+class multaController {
+
+    Void getionarMulta(Prestamo_Copia prestamo, Lector lector)
+    Int calcularDiasMulta()
+    Multa generarMulta(Int cantDias,LocalDate fechaIncio)
 }
 
 enum Categoria {
@@ -55,7 +63,8 @@ class Lector{
     Boolean tienePrestamosVencidos()
     Boolean tieneMultasVigentes()
     Void pedirPrestamo(Libro libro)
-    Void devolverCopia(Prestamo prestamo)
+    Void devolverCopia(Prestamo_Copia prestamo)
+    Void asignarMulta(Multa multa)
 }
 class Multa{
     LocalDate fecha_inicio
