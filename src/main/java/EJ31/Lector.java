@@ -26,9 +26,9 @@ public class Lector {
         return this.multas.stream().anyMatch(Multa::estaVigente);
     }
 
-    void agregarMulta(int dias){
+    /*void agregarMulta(int dias){
         multas.add(new Multa(LocalDate.now(), dias));
-    }
+    }*/
 
     int prestamosActuales(){
         return prestamos.stream().filter(prestamo_copia -> !prestamo_copia.estaCerrado()).collect(Collectors.toList()).size();
@@ -43,13 +43,14 @@ public class Lector {
         }
     }
 
-    void devolverCopia(Prestamo_Copia prestamo){
+    // ESTO LO PASA A MANEJAR EL CONTROLLER?
+    /*void devolverCopia(Prestamo_Copia prestamo){
         if(prestamo.estaVencido()){
-            prestamo.setCerrado(true);
+            prestamo.cerrar();
             if(!tienePrestamosVencidos()){ // Se fija si sigue teniendo prestamos para ver si asignarle o no la multa
                 agregarMulta(prestamo.diasVencido()*2);
             }
         }
-    }
+    }*/
 
 }

@@ -8,7 +8,7 @@ public class Prestamo_Copia {
     Lector lector;
     LocalDate fecha_prestamo;
 
-    boolean cerrado; // Ya se devolvio el libro
+    boolean cerrado = false; // Ya se devolvio el libro
 
     boolean estaVencido(){
         return LocalDate.now().isBefore(fecha_vencimiento()) && !cerrado;
@@ -26,8 +26,8 @@ public class Prestamo_Copia {
         return cerrado;
     }
 
-    public void setCerrado(boolean cerrado) {
-        this.cerrado = cerrado;
+    public void cerrar() {
+        this.cerrado = true;
     }
 
 
