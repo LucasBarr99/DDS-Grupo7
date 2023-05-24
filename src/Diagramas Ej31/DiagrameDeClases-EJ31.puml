@@ -62,9 +62,10 @@ class Lector{
     Int getCantidadDePrestamos()
     Boolean tienePrestamosVencidos()
     Boolean tieneMultasVigentes()
+    Boolean puedePedirPrestamo()
+    Int cantPrestamosActuales()
     Void pedirPrestamo(Libro libro)
-    Void devolverCopia(Prestamo_Copia prestamo)
-    Void asignarMulta(Multa multa)
+    Void agregarMulta(Multa multa)
 }
 class Multa{
     LocalDate fecha_inicio

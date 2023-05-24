@@ -15,7 +15,7 @@ public class Lector {
     }
 
     boolean puedePedirPrestamo(){
-        return prestamosActuales() < 3 && !tienePrestamosVencidos() && !tieneMultasVigentes();
+        return cantPrestamosActuales() < 3 && !tienePrestamosVencidos() && !tieneMultasVigentes();
     }
 
     Boolean tienePrestamosVencidos(){
@@ -26,11 +26,7 @@ public class Lector {
         return this.multas.stream().anyMatch(Multa::estaVigente);
     }
 
-    /*void agregarMulta(int dias){
-        multas.add(new Multa(LocalDate.now(), dias));
-    }*/
-
-    int prestamosActuales(){
+    int cantPrestamosActuales(){
         return prestamos.stream().filter(prestamo_copia -> !prestamo_copia.estaCerrado()).collect(Collectors.toList()).size();
     }
 
@@ -42,15 +38,5 @@ public class Lector {
             // Se le pide al repo una copia del libro
         }
     }
-
-    // ESTO LO PASA A MANEJAR EL CONTROLLER?
-    /*void devolverCopia(Prestamo_Copia prestamo){
-        if(prestamo.estaVencido()){
-            prestamo.cerrar();
-            if(!tienePrestamosVencidos()){ // Se fija si sigue teniendo prestamos para ver si asignarle o no la multa
-                agregarMulta(prestamo.diasVencido()*2);
-            }
-        }
-    }*/
 
 }
