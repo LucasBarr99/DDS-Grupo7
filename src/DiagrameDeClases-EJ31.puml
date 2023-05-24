@@ -55,7 +55,6 @@ class Lector{
     Boolean tienePrestamosVencidos()
     Boolean tieneMultasVigentes()
     Void pedirPrestamo(Libro libro)
-    Void devolverCopia(Prestamo prestamo)
 }
 class Multa{
     LocalDate fecha_inicio

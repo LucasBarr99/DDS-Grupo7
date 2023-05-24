@@ -43,13 +43,5 @@ public class Lector {
         }
     }
 
-    void devolverCopia(Prestamo_Copia prestamo){
-        if(prestamo.estaVencido()){
-            prestamo.setCerrado(true);
-            if(!tienePrestamosVencidos()){ // Se fija si sigue teniendo prestamos para ver si asignarle o no la multa
-                agregarMulta(prestamo.diasVencido()*2);
-            }
-        }
-    }
 
 }

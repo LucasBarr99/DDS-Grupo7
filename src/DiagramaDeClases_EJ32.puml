@@ -29,9 +29,6 @@ class Reserva{
 
     void confirmar()
     Double getTarifa()
-    void agregarReservaVuelo()
-    void quitarReservaVuelo()
-
 }
 
 }
@@ -95,17 +92,24 @@ class RepositorioVuelos{
 package Consultas{
 class Consulta{
   Ciudad Origen
-    Ciudad Destino
+  Ciudad Destino
 
+  String tipoConsulta()
 }
 
 class ConsultaHorario{
     LocalDateTime inicio
     LocalDateTime fin
 
+    String tipoConsulta()
+
+
 }
 class ConsultaTarifa{
-   String ordenTarifa
+   int tarifaMaxima
+
+   String tipoConsulta()
+
 }
 class ConsultaInfoVuelo{
     Vuelo vuelo
@@ -113,6 +117,8 @@ class ConsultaInfoVuelo{
     CategoriaAsiento categoria
     Aerolinea aerolinea
     boolean vueloDirecto
+
+    String tipoConsulta()
 }
 }
 
